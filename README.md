@@ -6,7 +6,7 @@ My personal portfolio site — a high school developer in Folsom, CA building so
 
 ## About
 
-A single-page portfolio covering who I am, where I've worked, and the projects I've built. Clean, no-framework, fast.
+A portfolio covering who I am, where I've worked, and the projects I've built. Clean, no-framework, fast.
 
 ## Built with
 
