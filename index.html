@@ -1,6 +1,340 @@
 <!DOCTYPE html>
 <html lang="en">
+<head><!DOCTYPE html>
+<html lang="en">
 <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oleksandr Rybitskyi</title>
+<meta name="description" content="Oleksandr Rybitskyi is a high school developer in Folsom, California, working in software, games, and AI.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a192f'/%3E%3Ctext x='50' y='70' font-family='monospace' font-size='50' font-weight='700' fill='%2364ffda' text-anchor='middle'%3EOR%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --navy:#0a192f;
+  --light-navy:#112240;
+  --lightest-navy:#233554;
+  --slate:#8892b0;
+  --light-slate:#a8b2d1;
+  --lightest-slate:#ccd6f6;
+  --white:#e6f1ff;
+  --green:#64ffda;
+  --green-tint:rgba(100,255,218,.1);
+  --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--slate);font-family:var(--sans);line-height:1.5;font-size:17px;-webkit-font-smoothing:antialiased}
+::selection{background:var(--green-tint);color:var(--white)}
+::-webkit-scrollbar{width:11px}
+::-webkit-scrollbar-track{background:var(--navy)}
+::-webkit-scrollbar-thumb{background:var(--lightest-navy);border-radius:0}
+a{color:var(--green);text-decoration:none}
+:focus-visible{outline:2px dashed var(--green);outline-offset:4px}
+
+.layout{max-width:1200px;margin:0 auto;padding:0 24px}
+@media(min-width:1080px){
+  .layout{display:grid;grid-template-columns:45% 55%;gap:40px;padding:0 50px}
+  .intro{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:space-between;padding:100px 0 60px}
+  .content{padding:120px 0 80px}
+}
+@media(max-width:1079px){
+  .intro{padding:80px 0 40px}
+  .content{padding:0 0 60px}
+  .nav,.socials-side{display:none}
+}
+
+/* intro / left */
+.intro h1{font-size:clamp(40px,6vw,66px);color:var(--lightest-slate);font-weight:700;letter-spacing:-.01em;line-height:1.05}
+.intro .hi{font-family:var(--mono);color:var(--green);font-size:15px;margin-bottom:22px;font-weight:500}
+.intro h2{font-size:clamp(26px,4.4vw,48px);color:var(--slate);font-weight:700;letter-spacing:-.01em;line-height:1.08;margin-top:6px}
+.intro .blurb{margin-top:26px;max-width:46ch;color:var(--slate);font-size:17px}
+.intro .blurb b{color:var(--light-slate);font-weight:600}
+.cta{display:inline-block;margin-top:38px;font-family:var(--mono);font-size:14px;color:var(--green);
+  border:1px solid var(--green);border-radius:4px;padding:16px 26px;transition:background-color .2s}
+.cta:hover{background:var(--green-tint)}
+
+.nav{margin-top:50px;display:flex;flex-direction:column;gap:18px}
+.nav a{display:flex;align-items:center;gap:16px;color:var(--slate);font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
+.nav a .bar{width:34px;height:1px;background:var(--slate);transition:width .2s,background-color .2s}
+.nav a:hover{color:var(--lightest-slate)}
+.nav a:hover .bar{width:60px;background:var(--lightest-slate)}
+
+.socials-side{display:flex;gap:22px;align-items:center}
+.socials-side a{color:var(--light-slate);display:inline-flex;transition:color .2s,transform .2s}
+.socials-side a:hover{color:var(--green);transform:translateY(-3px)}
+.socials-side svg{width:21px;height:21px}
+
+/* content / right */
+.section{margin-bottom:110px}
+.section:last-child{margin-bottom:0}
+.heading{display:flex;align-items:center;gap:16px;margin-bottom:34px}
+.heading .num{font-family:var(--mono);color:var(--green);font-size:17px;font-weight:500}
+.heading h3{color:var(--lightest-slate);font-size:clamp(22px,4vw,28px);font-weight:700;letter-spacing:-.01em;white-space:nowrap}
+.heading .rule{height:1px;background:var(--lightest-navy);width:100%;max-width:300px}
+
+.section p{margin-bottom:16px}
+.section p a,.inline-link{color:var(--green);position:relative}
+.section p a:hover{text-decoration:underline}
+
+.techlist{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;margin-top:18px;max-width:420px}
+.techlist li{position:relative;padding-left:20px;font-family:var(--mono);font-size:14px;color:var(--light-slate)}
+.techlist li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;background:var(--green);transform:rotate(45deg)}
+
+/* experience */
+.job{margin-bottom:30px;padding-left:22px;border-left:1px solid var(--lightest-navy)}
+.job .role{color:var(--lightest-slate);font-size:18px;font-weight:600}
+.job .role span{color:var(--green)}
+.job .when{font-family:var(--mono);font-size:13px;color:var(--slate);margin:3px 0 10px}
+.job ul{list-style:none;margin:0}
+.job li{position:relative;padding-left:22px;margin-bottom:8px;color:var(--slate);font-size:16px}
+.job li::before{content:"";position:absolute;left:0;top:10px;width:7px;height:7px;background:var(--green);transform:rotate(45deg)}
+
+/* projects */
+.projects{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:620px){.projects{grid-template-columns:1fr}}
+.card{background:var(--light-navy);border:1px solid var(--lightest-navy);border-radius:6px;padding:26px;
+  display:flex;flex-direction:column;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-5px);border-color:var(--green)}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px}
+.card-top .folder{color:var(--green)}
+.card-top .folder svg{width:38px;height:38px}
+.card-top .links{display:flex;gap:14px}
+.card-top .links a{color:var(--light-slate);display:inline-flex}
+.card-top .links a:hover{color:var(--green)}
+.card-top .links svg{width:19px;height:19px}
+.card h4{color:var(--lightest-slate);font-size:19px;font-weight:600;margin-bottom:10px}
+.card p{color:var(--slate);font-size:15px;flex:1}
+.card .status{font-family:var(--mono);font-size:12px;color:var(--green);margin-top:2px;margin-bottom:10px}
+.card .foot{display:flex;flex-wrap:wrap;gap:7px 14px;margin-top:18px;font-family:var(--mono);font-size:12.5px;color:var(--slate)}
+.card .livelink{font-family:var(--mono);font-size:13px;margin:12px 0 0}
+
+/* contact */
+.contact{text-align:center;max-width:620px;margin:0 auto}
+.contact .num{font-family:var(--mono);color:var(--green);font-size:15px}
+.contact h3{color:var(--lightest-slate);font-size:clamp(34px,6vw,52px);font-weight:700;margin:14px 0 20px;letter-spacing:-.01em}
+.contact p{color:var(--slate)}
+.contact .cta{margin-top:40px;padding:18px 32px}
+
+footer{text-align:center;padding:30px 24px 40px;color:var(--slate)}
+.socials-foot{display:none}
+@media(max-width:1079px){.socials-foot{display:flex;justify-content:center;gap:26px;margin-bottom:24px}
+  .socials-foot a{color:var(--light-slate)}.socials-foot svg{width:22px;height:22px}}
+footer .credit{font-family:var(--mono);font-size:12.5px}
+footer .credit a{color:var(--slate)}
+footer .credit a:hover{color:var(--green)}
+footer .legal{margin-top:8px;font-family:var(--mono);font-size:12px}
+footer .legal a{color:var(--slate)}
+footer .legal a:hover{color:var(--green)}
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <header class="intro">
+    <div>
+      <p class="hi">Hi, my name is</p>
+      <h1>Oleksandr Rybitskyi.</h1>
+      <h2>I build software, games, and AI.</h2>
+      <p class="blurb">I'm a high school developer in Folsom, California. I taught myself to code, I lead a small game development team, and I built and deployed my own <b>image recognition model</b> to learn how machine learning actually works.</p>
+      <a class="cta" href="#projects">Check out my work</a>
+
+      <nav class="nav">
+        <a href="#about"><span class="bar"></span>About</a>
+        <a href="#experience"><span class="bar"></span>Experience</a>
+        <a href="#projects"><span class="bar"></span>Projects</a>
+        <a href="#contact"><span class="bar"></span>Contact</a>
+      </nav>
+    </div>
+
+    <div class="socials-side">
+      <a href="https://github.com/vitamindgoat" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.1-.76.41-1.27.74-1.56-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.42.36.8 1.08.8 2.18v3.23c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+      </a>
+      <a href="https://huggingface.co/vitamindgoat" target="_blank" rel="noopener" aria-label="Hugging Face">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@vitamindgoat" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 1 1-2.59-2.59c.27 0 .53.04.78.12V9.66a5.69 5.69 0 0 0-.78-.05 5.69 5.69 0 1 0 5.69 5.69V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.3 4.3 0 0 1-3.25-1.48z"/></svg>
+      </a>
+      <a href="mailto:alex.rybitskyi1@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <main class="content">
+
+    <section class="section" id="about">
+      <div class="heading"><span class="num">01.</span><h3>About me</h3><span class="rule"></span></div>
+      <p>I'm a sophomore at Folsom High School, and I've been teaching myself to program for years, mostly because I wanted to build my own games. Since then I've moved into web apps, started taking college computer science classes early, and begun learning machine learning.</p>
+      <p>Outside of my own projects, I serve as Secretary of my school's Networking and Cybersecurity Club, where I helped get an AP Cybersecurity course added to our school. I also mentor younger students at CoderDojo and compete through programs like the Congressional App Challenge, Hack Club, and SkillsUSA.</p>
+      <p>I also create content on <a href="https://www.tiktok.com/@vitamindgoat" target="_blank" rel="noopener">TikTok</a>, where I share my projects and game development. My videos have pulled in tens of thousands of views, which taught me a lot about marketing and building an audience for the things I make.</p>
+      <p>A few of the technologies I work with:</p>
+      <ul class="techlist">
+        <li>Python</li>
+        <li>Lua / Luau</li>
+        <li>JavaScript</li>
+        <li>HTML &amp; CSS</li>
+        <li>Blender (3D)</li>
+        <li>Git &amp; GitHub</li>
+        <li>Figma (UI design)</li>
+      </ul>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="heading"><span class="num">02.</span><h3>Where I've worked</h3><span class="rule"></span></div>
+
+      <div class="job">
+        <div class="role">Secretary <span>· Networking &amp; Cybersecurity Club</span></div>
+        <div class="when">2025 to Present</div>
+        <ul>
+          <li>Helped get an AP Cybersecurity course added to Folsom High School.</li>
+          <li>Help run weekly meetings and keep the club organized.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="role">Intern <span>· ACM CTE Pathway</span></div>
+        <div class="when">2025 to Present</div>
+        <ul>
+          <li>Internship through my school's CTE Information and Communication Technology pathway.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="role">Mentor <span>· CoderDojo</span></div>
+        <div class="when">Ongoing</div>
+        <ul>
+          <li>Teach younger students the basics of coding and help them write their first programs.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="role">Team Lead <span>· Game Development Project</span></div>
+        <div class="when">2025</div>
+        <ul>
+          <li>Led a team to build a full game and wrote core gameplay systems in Lua and Luau.</li>
+          <li>Assigned tasks, organized the workflow, and kept the project on track.</li>
+          <li>Modeled and animated 3D assets in Blender.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="role">Student <span>· Folsom Lake College (Dual Enrollment)</span></div>
+        <div class="when">2026</div>
+        <ul>
+          <li>Taking college-level computer science (CISP 300) while in high school.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="heading"><span class="num">03.</span><h3>Projects</h3><span class="rule"></span></div>
+      <div class="projects">
+
+        <article class="card">
+          <div class="card-top">
+            <span class="folder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/></svg></span>
+            <span class="links">
+              <a href="https://github.com/vitamindgoat" target="_blank" rel="noopener" aria-label="GitHub repository">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.1-.76.41-1.27.74-1.56-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.42.36.8 1.08.8 2.18v3.23c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+              </a>
+            </span>
+          </div>
+          <h4>Handwritten Digit Recognizer</h4>
+          <div class="status">Live demo</div>
+          <p>A machine learning model I built and deployed that recognizes handwritten digits. I wrote it in Python to understand how neural networks work, then put it online so anyone can try it.</p>
+          <p class="livelink"><a href="https://vitamindgoat-digit-recognizer.static.hf.space/index.html" target="_blank" rel="noopener">Live demo &rarr;</a> &nbsp;·&nbsp; <a href="https://github.com/vitamindgoat/digit-recognizer" target="_blank" rel="noopener">Code &rarr;</a></p>
+          <div class="foot"><span>Python</span><span>Neural networks</span><span>Hugging Face</span></div>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <span class="folder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/></svg></span>
+            <span class="links">
+              <a href="https://github.com/vitamindgoat" target="_blank" rel="noopener" aria-label="GitHub repository">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.1-.76.41-1.27.74-1.56-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.42.36.8 1.08.8 2.18v3.23c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+              </a>
+            </span>
+          </div>
+          <h4>SnapFix</h4>
+          <div class="status">Live demo</div>
+          <p>An AI-powered home-help app that I own. Snap a photo of a household problem, like a leaking pipe or a broken fence, and SnapFix identifies the issue and matches you with qualified local pros.</p>
+          <p class="livelink"><a href="https://snapfix-vl.vercel.app" target="_blank" rel="noopener">Live demo &rarr;</a> &nbsp;·&nbsp; <a href="https://github.com/vitamindgoat/snapfix-vl" target="_blank" rel="noopener">Code &rarr;</a></p>
+          <div class="foot"><span>TypeScript</span><span>Next.js</span><span>AI vision</span></div>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <span class="folder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/></svg></span>
+            <span class="links">
+              <a href="https://github.com/vitamindgoat" target="_blank" rel="noopener" aria-label="GitHub repository">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.1-.76.41-1.27.74-1.56-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.42.36.8 1.08.8 2.18v3.23c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+              </a>
+            </span>
+          </div>
+          <h4>Swarm Rush — Design Map</h4>
+          <div class="status">Live demo</div>
+          <p>An interactive, pannable map of the full design for a Roblox game I'm creating. I built it from scratch in plain HTML, CSS, and JavaScript, with custom SVG connectors, drag and zoom, and editable nodes that save in the browser.</p>
+          <video controls preload="none" poster="swarm-rush-poster.jpg" style="width:100%;border-radius:8px;margin:12px 0 4px;display:block;background:#000;">
+            <source src="swarm-rush.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <p class="livelink"><a href="https://swarm-rush-map.vercel.app" target="_blank" rel="noopener">Live demo &rarr;</a> &nbsp;·&nbsp; <a href="https://github.com/vitamindgoat/swarm-rush-map" target="_blank" rel="noopener">Code &rarr;</a></p>
+          <div class="foot"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>SVG</span></div>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <span class="folder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/></svg></span>
+          </div>
+          <h4>SnapFix — Landing Page</h4>
+          <div class="status">Live demo</div>
+          <p>The front-end landing page I designed and built for SnapFix. A clean, mobile-first page made from scratch to explain the product at a glance.</p>
+          <p class="livelink"><a href="https://snapfix-dun.vercel.app" target="_blank" rel="noopener">Live demo &rarr;</a> &nbsp;·&nbsp; <a href="https://github.com/vitamindgoat/snapfix-landing-page" target="_blank" rel="noopener">Code &rarr;</a></p>
+          <div class="foot"><span>Next.js</span><span>TypeScript</span><span>Tailwind</span></div>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <span class="folder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/></svg></span>
+          </div>
+          <h4>Retro Grounds</h4>
+          <p>A full game I built with a team I led. I wrote the core gameplay systems in Lua and Luau and modeled the 3D assets in Blender.</p>
+          <video controls preload="none" poster="retro-grounds-poster.jpg" style="width:100%;border-radius:8px;margin:12px 0 4px;display:block;background:#000;">
+            <source src="retro-grounds.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="foot"><span>Lua</span><span>Luau</span><span>Blender</span></div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <span class="num">04. What's next</span>
+      <h3>Get in touch</h3>
+      <p>I'm always happy to talk about programming, a project I'm working on, or an opportunity to learn something new. The best way to reach me is by email, and my code lives on GitHub.</p>
+      <a class="cta" href="mailto:alex.rybitskyi1@gmail.com">Say hello</a>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="socials-foot">
+    <a href="https://github.com/vitamindgoat" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.1-.76.41-1.27.74-1.56-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.42.36.8 1.08.8 2.18v3.23c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg></a>
+    <a href="https://huggingface.co/vitamindgoat" target="_blank" rel="noopener" aria-label="Hugging Face"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></a>
+    <a href="https://www.tiktok.com/@vitamindgoat" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 1 1-2.59-2.59c.27 0 .53.04.78.12V9.66a5.69 5.69 0 0 0-.78-.05 5.69 5.69 0 1 0 5.69 5.69V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.3 4.3 0 0 1-3.25-1.48z"/></svg></a>
+    <a href="mailto:alex.rybitskyi1@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+  </div>
+  <div class="credit">Designed and built by <a href="https://github.com/vitamindgoat" target="_blank" rel="noopener">Oleksandr Rybitskyi</a></div>
+  <div class="legal"><a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="terms.html">Terms</a></div>
+</footer>
+</body>
+</html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Oleksandr Rybitskyi</title>
